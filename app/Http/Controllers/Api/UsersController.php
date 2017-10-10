@@ -2,20 +2,37 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Entities\Contracts\Factories\User as UserFactoryInterface;
+use App\Entities\Contracts\Repositories\User as UserRepositoryInterface;
 use App\Http\Controllers\Controller;
+use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    //
-    public function index(Request $request)
+    private $userRepositoryInterface;
+    private $entityManager;
+
+    public function __construct(UserRepositoryInterface $repository,EntityManagerInterface $em)
     {
-        return __METHOD__;
+        $this->userRepositoryInterface = $repository;
+        $this->entityManager = $em;
     }
 
-    public function store(Request $request)
+    //
+    public function index()
     {
-        return __METHOD__;
+        return JsonResponse::create($this->userRepositoryInterface->findAll(),JsonResponse::HTTP_OK);
+    }
+
+    public function store(Request $request, UserFactoryInterface $factory)
+    {
+        $user = $factory->create($request->all());
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+        $response = ['id'=>$user->getId()];
+        return JsonResponse::create($response,JsonResponse::HTTP_OK);
     }
 
     public function update(Request $request)

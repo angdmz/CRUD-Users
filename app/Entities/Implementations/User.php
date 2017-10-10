@@ -18,7 +18,7 @@ class User implements IUser
     private $email;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getId() : string
     {
@@ -42,7 +42,7 @@ class User implements IUser
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName(string $name)
     {
@@ -50,7 +50,7 @@ class User implements IUser
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail() : string
     {
@@ -58,7 +58,7 @@ class User implements IUser
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
     public function setEmail(string $email)
     {
