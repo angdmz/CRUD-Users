@@ -11,19 +11,19 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    private $userRepositoryInterface;
+    private $userRepository;
     private $entityManager;
 
     public function __construct(UserRepositoryInterface $repository,EntityManagerInterface $em)
     {
-        $this->userRepositoryInterface = $repository;
+        $this->userRepository = $repository;
         $this->entityManager = $em;
     }
 
     //
     public function index()
     {
-        return JsonResponse::create($this->userRepositoryInterface->findAll(),JsonResponse::HTTP_OK);
+        return JsonResponse::create($this->userRepository->findAll(),JsonResponse::HTTP_OK);
     }
 
     public function store(Request $request, UserFactoryInterface $factory)
