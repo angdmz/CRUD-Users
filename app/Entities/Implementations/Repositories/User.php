@@ -56,10 +56,10 @@ class User implements UserRepositoryInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
-    public function findAll(): ArrayCollection
+    public function findAll() : array
     {
-        return new ArrayCollection($this->genericRepository->findAll());
+        return $this->genericRepository->findAll();
     }
 }

@@ -27,5 +27,7 @@ class UserMapping extends EntityMapping
 
         $builder->string('name');
         $builder->string('email');
+        $builder->string('password');
+        $builder->dateTime('created_at');
     }
 }

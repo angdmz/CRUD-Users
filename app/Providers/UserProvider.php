@@ -9,6 +9,8 @@ use App\Entities\Contracts\Factories\User as UserFactoryInterface;
 use App\Entities\Implementations\Factories\User as UserFactory;
 use Doctrine\ORM\EntityManager;
 use Illuminate\Support\ServiceProvider;
+use App\Entities\Contracts\Validators\User as UserValidatorInterface;
+use App\Entities\Implementations\Validators\User as UserValidator;
 
 class UserProvider extends ServiceProvider
 {
@@ -41,6 +43,11 @@ class UserProvider extends ServiceProvider
         $this->app->bind(UserFactoryInterface::class,function(){
             $factory = $this->app->make(UserFactory::class);
             return $factory;
+        });
+
+        $this->app->bind(UserValidatorInterface::class,function(){
+            $validator = $this->app->make(UserValidator::class);
+            return $validator;
         });
     }
 }

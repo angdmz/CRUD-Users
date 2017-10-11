@@ -17,5 +17,5 @@ interface User
     public function find($id) : IUser;
     public function findByName($name) : IUser;
     public function findByEmail($email) : IUser;
-    public function findAll() : ArrayCollection;
+    public function findAll() : array;
 }

@@ -17,11 +17,7 @@ class User implements UserFactoryInterface
 
     public function create($args): IUser
     {
-        $name = isset($args['name']) ? $args['name'] : "";
-        $email = isset($args['email']) ? $args['email'] : "";
-        $user = new \App\Entities\Implementations\User();
-        $user->setEmail($email);
-        $user->setName($name);
+        $user = new \App\Entities\Implementations\User($args['name'],$args['email'],$args['password']);
         return $user;
     }
 }
